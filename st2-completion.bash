@@ -20,6 +20,9 @@ _st2 () {
     elif [ $prev = "login" ]; then
       user_list=`cut -d: -f1 /etc/passwd | grep -vE '^(#|_).*$'`
       COMPREPLY=( $(compgen -W "$user_list" -- "$cur") )
+    elif [ $prev = "execution" ]; then
+      # list=`st2 execution list -j | jq -r '.[].id'`
+      COMPREPLY=( $(compgen -W "list get re-run cancel pause resume tail" -- "$cur") )
     elif [ $prev = "key" ]; then
       COMPREPLY=( $(compgen -W "list set delete" -- "$cur") )
     fi
